@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Loan Status Predictor</title>
+  </head>
+  <body>
+    <div class="login">
+    <h1>Predict your Loan Status</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict') }}" method="post">
+        <div>
+            <p>Please select your gender:
+                <input type="radio" id="male" name="gender" value="1" required><label for="male">Male</label>&ensp;<input type="radio" id="female" name="gender" value="0"><label for="female">Female</label></p></div>
+        <div>
+            <p>Please select your marital status:
+                <input type="radio" id="m_yes" name="married" value="1" required><label for="m_yes">Yes</label>&ensp;<input type="radio" id="m_no" name="married" value="0"><label for="m_no">No</label></p></div>
+        <div>
+        <label for="dependents">No. of dependents:</label>
+          <select id="dependents" name="dependents" required>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3+</option>
+          </select></div>
+        <div>
+            <p>Please select your educational status:
+                <input type="radio" id="graduate" name="education" value="1" required><label for="graduate">Graduate</label>&ensp;<input type="radio" id="not_graduate" name="education" value="0"><label for="not_graduate">Not Graduate</label></p></div>
+        <div>
+            <p>Please select your employment status:
+                <input type="radio" id="se_yes" name="self-employed" value="1" required><label for="se_yes">Yes</label>&ensp;<input type="radio" id="se_no" name="self-employed" value="0"><label for="se_no">No</label></p></div>
+        <div><p>Please enter your income:&ensp;<input type="number" name="applicantincome" placeholder="Applicant Income" required="required" /></p></div>
+        <div><p>Please enter your co-applicant's income:&ensp;<input type="number" name="coapplicantincome" placeholder="Co-applicant Income" required="required" /></p></div>
+        <div><p>Please enter your loan amount:&ensp;<input type="number" name="loanamount" placeholder="Loan Amount" required="required" /></p></div>
+        <div><p>Please enter your loan amount term:&ensp;<input type="number" name="loanamountterm" placeholder="Loan Amount Term" required="required" /></p></div>
+        <div>
+            <p>Please select your credit history:
+                <input type="radio" id="cr_yes" name="credithistory" value="1" required><label for="cr_yes">1.0</label>&ensp;<input type="radio" id="cr_no" name="credithistory" value="0"><label for="cr_no">0.0</label></p></div>
+        <div>
+        <label for="propertyarea">Property Area:</label>
+          <select id="propertyarea" name="propertyarea" required>
+            <option value="0">Rural</option>
+            <option value="1">Semi Urban</option>
+            <option value="2">Urban</option>
+          </select></div>
+        <br>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+        <br>
+        <br>
+        <div><h4> {{ prediction_text }} </h4></div>
+        <br>
+        <br>
+        <div><h5>Do you want to check it again?? <a href="/">Click here</a> </h5>
+        </div>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  </body>
+</html>
